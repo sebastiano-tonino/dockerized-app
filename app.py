@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 import psutil
 import platform
 import mysql.connector
+from config import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT
 
 app = Flask(__name__)
 
@@ -23,7 +24,12 @@ def get_system_data():
 @app.route("/app/database-data", methods=["GET"])
 def get_database_data():
     try:
-        conn = mysql.connector.connect()
+        conn = mysql.connector.connect( 
+            host=DB_HOST,
+            port=3306,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            database=DB_NAME)
         cursor = conn.cursor()
         cursor.execute("SELECT VERSION();")
         version = cursor.fetchone()[0]
@@ -31,7 +37,7 @@ def get_database_data():
         conn.close()
         return jsonify({"db_version": version}), 200
     except mysql.connector.Error as e:
-        return jsonify("Error"), 500
+        return jsonify({"Error": str(e)}), 500
 
 
 if __name__ == "__main__":

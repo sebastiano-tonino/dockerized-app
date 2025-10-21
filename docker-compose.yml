@@ -1,34 +1,36 @@
 version: "3.9"
 
-app:
-  build: .
-  container_name: app
-  restart: always
-  depends_on:
-    - mariadb
-  environment:
-    DB_HOST: mariadb
-    DB_USER: user
-    DB_PASSWORD: password
-    DB_NAME: testdb
-  ports:
-    - "8000:5000"
-  volumes:
-    - .:/app
-
-mariadb:
-    image: mariadb:11.3
-    container_name: mariadb
+services:
+  app:
+    build: .
+    container_name: app
     restart: always
+    depends_on:
+      mariadb:
+        condition: service_started
     environment:
-      MARIADB_ROOT_PASSWORD: rootpassword
-      MARIADB_DATABASE: testdb
-      MARIADB_USER: user
-      MARIADB_PASSWORD: password
+      DB_HOST: mariadb # ${DB_HOST}
+      DB_USER: db_user_development
+      DB_PASSWORD: db_password_development
+      DB_NAME: db_development
     ports:
-      - "3306:3306"
+      - "8000:5000"
     volumes:
-      - mariadb_data:/var/lib/mysql
+      - .:/app
+
+  mariadb:
+      image: mariadb:11.3
+      container_name: mariadb
+      restart: always
+      environment:
+        MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+        MARIADB_DATABASE: ${MARIADB_DATABASE}
+        MARIADB_USER: ${MARIADB_USER}
+        MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+      ports:
+        - "3306:3306"
+      volumes:
+        - mariadb_data:/var/lib/mysql
 
 volumes:
   mariadb_data:
