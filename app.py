@@ -29,7 +29,10 @@ def get_database_data():
             port=3306,
             user=DB_USER,
             password=DB_PASSWORD,
-            database=DB_NAME)
+            database=DB_NAME,
+            charset='utf8mb4',
+            collation='utf8mb4_unicode_ci'
+        )
         cursor = conn.cursor()
         cursor.execute("SELECT VERSION();")
         version = cursor.fetchone()[0]
