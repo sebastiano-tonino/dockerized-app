@@ -9,30 +9,37 @@ services:
       mariadb:
         condition: service_started
     environment:
-      DB_HOST: ${DB_HOST} # ${DB_HOST}
-      DB_USER: ${DB_USER} # ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD} # ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME} # ${DB_NAME}
+      DB_HOST: mariadb
+      DB_USER: db_user
+      DB_PASSWORD: password
+      DB_NAME: db_development
     ports:
       - "8000:5000"
     volumes:
-      - .:/app
+      - ./app:/app
+    networks:
+      - app_network
 
   mariadb:
-      image: mariadb:11.3
-      container_name: mariadb
-      restart: always
-      environment:
-        MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-        MARIADB_DATABASE: ${DB_NAME}
-        MARIADB_USER: ${DB_USER}
-        MARIADB_PASSWORD: ${DB_PASSWORD}
-        MARIADB_CHARACTER_SET_SERVER: utf8mb4
-        MARIADB_COLLATION_SERVER: utf8mb4_unicode_ci
-      ports:
-        - "3306:3306"
-      volumes:
-        - mariadb_data:/var/lib/mysql
+    image: mariadb:latest
+    container_name: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpsw
+      MARIADB_DATABASE: db_development
+      MARIADB_USER: db_user
+      MARIADB_PASSWORD: password
+      MARIADB_CHARACTER_SET_SERVER: utf8mb4
+      MARIADB_COLLATION_SERVER: utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - app_network
 
 volumes:
   mariadb_data:
+networks:
+  app_network:
+    driver: bridge
