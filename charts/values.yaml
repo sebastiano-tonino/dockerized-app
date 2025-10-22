@@ -1,0 +1,15 @@
+db:
+  host: flask-app-mariadb
+  port: 3306
+  user: dev
+  password: dev
+  database: dev
+  name: db
+
+labels:
+  app: flask-app
+
+image:
+  repository: stonino/flask-app
+  tag: latest
+  pullPolicy: IfNotPresent
