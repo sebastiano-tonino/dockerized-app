@@ -4,7 +4,6 @@ db:
   user: dev
   password: dev
   database: dev
-  name: db
 
 labels:
   app: flask-app
@@ -22,3 +21,5 @@ mariadb:
   auth:
     rootPassword: password
     database: dev
+    password: dev
+    username: dev

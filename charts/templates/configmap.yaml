@@ -2,12 +2,3 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Release.Name }}-configmap
-data:
-  config.py: |
-    DB_CONFIG = {
-        "host": {{ .Values.db.host }},
-        "port": {{ .Values.db.port }},
-        "user": {{ .Values.db.user }},
-        "password": {{ .Values.db.password }},
-        "database": {{ .Values.db.database }}
-    }
