@@ -138,7 +138,3 @@ helm install flask-app ./charts  -n testing --create-namespace --set database.us
 
 > **Warning**
 > The deployment of the helm templates has only been tested on minikube 
-
-
-
-
