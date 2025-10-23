@@ -10,7 +10,7 @@ docker buildx build -t stonino/flask-app:latest --push .
 helm install --debug --dry-run flask-app .\charts\ 
 helm install flask-app .\charts\ 
 
-helm dependency update flask-chart/
+helm dependency build update flask-chart/
 helm install my-flask flask-chart/ --namespace flask --create-namespace
 
 

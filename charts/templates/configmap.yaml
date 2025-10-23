@@ -11,7 +11,3 @@ data:
         "password": {{ .Values.db.password }},
         "database": {{ .Values.db.database }}
     }
-dependencies:
-  - name: mariadb
-    version: 14.1.2
-    repository: https://charts.bitnami.com/bitnami

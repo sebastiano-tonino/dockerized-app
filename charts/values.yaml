@@ -1,5 +1,5 @@
 db:
-  host: flask-app-mariadb
+  host: mariadb
   port: 3306
   user: dev
   password: dev
@@ -13,3 +13,12 @@ image:
   repository: stonino/flask-app
   tag: latest
   pullPolicy: IfNotPresent
+
+mariadb:
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
+  auth:
+    rootPassword: password
+    database: testdb
