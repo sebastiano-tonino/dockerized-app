@@ -21,7 +21,7 @@ spec:
             - containerPort: 5000
           env:
             - name: DB_HOST
-              value: "{{ .Release.Name }}-mariadb"
+              value: "{{ .Values.db.host }}"
             - name: DB_PORT
               value: "{{ .Values.db.port }}"
             - name: DB_NAME

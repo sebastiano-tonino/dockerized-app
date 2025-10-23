@@ -1,5 +1,5 @@
 db:
-  host: mariadb
+  host: flask-app-mariadb
   port: 3306
   user: dev
   password: dev
@@ -21,4 +21,4 @@ mariadb:
       size: 1Gi
   auth:
     rootPassword: password
-    database: testdb
+    database: dev
