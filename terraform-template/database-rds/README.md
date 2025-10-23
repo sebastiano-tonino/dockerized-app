@@ -24,3 +24,6 @@ tofu plan --var-env=$envfile
 ```sh
 tofu apply --var-env=$envfile
 ```
+
+> **Warning**
+> The terraform template deployments were not tested due to the lack of a personal AWS account.

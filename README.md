@@ -136,7 +136,8 @@ For kubernetes chaging the values in charts/values.yaml or better passing value 
 helm install flask-app ./charts  -n testing --create-namespace --set database.user=dev ....
 ```
 
-
+> **Warning**
+> The deployment of the helm templates has only been tested on minikube 
 
 
 
