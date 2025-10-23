@@ -94,9 +94,9 @@ variable "workspace_role_arns" {
   description = "A map of workspace names to IAM role ARNs."
   type        = map(string)
   default = {
-    "dev"     = "arn:aws:iam::305410271972:role/opentofu-deploy",
-    "staging" = "arn:aws:iam::623956215528:role/opertofu-deploy",
-    "prod"    = "arn:aws:iam::623956215528:role/opertofu-deploy"
+    "dev"     = "arn:aws:iam::XXXXXXXXXXXX:role/opentofu-deploy",
+    "staging" = "arn:aws:iam::XXXXXXXXXXXX:role/opentofu-deploy",
+    "prod"    = "arn:aws:iam::XXXXXXXXXXXX:role/opentofu-deploy"
   }
 }
 
